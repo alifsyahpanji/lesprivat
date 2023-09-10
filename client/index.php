@@ -63,6 +63,7 @@ if($data_jadwal == NULL) {
                 <div class="card-text">
                     <div class="fw-bolder">Hari: <?php echo $data_hari ?>
                     </div>
+                    <div class=" mt-3 mb-2"><a href="ubahjadwal.php" class="btn btn-warning">Ubah Jadwal</a></div>
                 </div>
                 <?php
 }
