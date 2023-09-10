@@ -1,0 +1,30 @@
+body {
+    background: linear-gradient(90deg, rgba(0, 12, 209, 1) 0%, rgba(171, 0, 209, 1) 100%);
+}
+
+.perfect-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-margin {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.title {
+    font-size: 45px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 25px;
+}
+
+@media (orientation: portrait) {
+    .title {
+        font-size: 27px;
+    }
+}
