@@ -8,6 +8,8 @@ include("../env.php");
 
 $user_id = $_SESSION['id'];
 
+# Mendapatkan data akun
+
 $check_id_query = "SELECT * FROM akun WHERE id = '$user_id' ";
 $run_query_id = mysqli_query($conn,$check_id_query);
 $row_id = mysqli_fetch_assoc($run_query_id);
@@ -18,6 +20,8 @@ $row_id = mysqli_fetch_assoc($run_query_id);
    $data_anak = $row_id["nama_anak"];
    $data_alamat = $row_id["alamat"];
 
+# Mendapatkan data jadwal
+
 if($data_jadwal){
     $get_jadwal_query = "SELECT hari FROM jadwal WHERE id = '$data_jadwal' ";
     $run_query_jadwal = mysqli_query($conn,$get_jadwal_query);
@@ -25,6 +29,20 @@ if($data_jadwal){
 
     $data_hari = $row_jadwal["hari"];
 }
+
+# Mendapatkan data perkembangan
+
+$sql_perkembangan = "SELECT * FROM perkembangan WHERE id_akun = '$user_id' ORDER BY id DESC LIMIT 12 ";
+$run_perkembangan = mysqli_query($conn, $sql_perkembangan);
+$count_perkembangan = mysqli_num_rows($run_perkembangan);
+
+$alert_perkembangan = "";
+
+if($count_perkembangan == 0){
+    $alert_perkembangan = "Mulai pertemuan les privat untuk melihat data perkembangan anak anda";
+}
+
+
 
 ?>
 
@@ -61,7 +79,8 @@ if($data_jadwal == NULL) {
 } else {
     ?>
                 <div class="card-text">
-                    <div class="fw-bolder">Hari: <?php echo $data_hari ?>
+                    <div class="fw-bolder">Hari:
+                        <?php echo $data_hari ?>
                     </div>
                     <div class=" mt-3 mb-2"><a href="ubahjadwal.php" class="btn btn-warning">Ubah Jadwal</a></div>
                 </div>
@@ -72,6 +91,67 @@ if($data_jadwal == NULL) {
 
             </div>
         </div>
+
+        <div class="card mt-4">
+            <h5 class="card-header">Perkembangan Anak</h5>
+            <div class="card-body">
+                <div class="card-text">
+                    <?php 
+if($alert_perkembangan){
+    ?>
+                    <div class="alert alert-primary" role="alert">
+                        <?php echo $alert_perkembangan ?>
+                    </div>
+                    <?php
+} ?>
+
+
+
+                    <div>
+                        <table class="table table-striped table-bordered table-responsive">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Data</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php 
+                                if($count_perkembangan > 0){
+                                    while($row_perkembangan = mysqli_fetch_assoc($run_perkembangan)){
+?>
+                                <tr>
+                                    <td>
+                                        <?php echo $row_perkembangan["tanggal"] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row_perkembangan["data_perkembangan"] ?>
+                                    </td>
+                                </tr>
+
+                                <?php
+                                    }
+                                }else{
+                                    ?>
+                                <tr>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
 
         <div class="card mt-4">
             <h5 class="card-header">Pembayaran</h5>

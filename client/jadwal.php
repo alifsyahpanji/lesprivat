@@ -8,8 +8,10 @@ $user_id = $_SESSION['id'];
 
 include("../env.php");
 
+# Pesan alert
 $data_alert = "";
 
+# Mendapatkan data akun
 $check_id_query = "SELECT * FROM akun WHERE id = '$user_id' ";
 $run_query_id = mysqli_query($conn,$check_id_query);
 $row_id = mysqli_fetch_assoc($run_query_id);
@@ -18,6 +20,7 @@ $data_ortu = $row_id["nama_ortu"];
 $data_anak = $row_id["nama_anak"];
 $data_alamat = $row_id["alamat"];
 
+# Mendapatkan data jadwal
 $get_jadwal_query = "SELECT * FROM jadwal WHERE id_akun IS NULL";
 $run_jadwal_query = mysqli_query($conn,$get_jadwal_query);
 $count_jadwal = mysqli_num_rows($run_jadwal_query);
