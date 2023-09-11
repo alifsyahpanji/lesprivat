@@ -23,6 +23,18 @@ body {
     margin-bottom: 25px;
 }
 
+.font-green {
+    color: #00FF00;
+}
+
+.font-red {
+    color: red;
+}
+
+.font-blue {
+    color: blue;
+}
+
 @media (orientation: portrait) {
     .title {
         font-size: 27px;

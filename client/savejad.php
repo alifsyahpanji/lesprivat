@@ -25,7 +25,7 @@ $row_jadwal_user = mysqli_fetch_assoc($run_jadwal_user);
 $data_jadwal_user = $row_jadwal_user["id_jadwal"];
 
 if($data_jadwal_user == NULL){
-    $sql_update_data = "UPDATE akun SET nama_ortu = '$data_ortu', nama_anak = '$data_anak', alamat = '$data_alamat', id_jadwal = $id_jadwal WHERE id = $user_id";
+    $sql_update_data = "UPDATE akun SET nama_ortu = '$data_ortu', nama_anak = '$data_anak', alamat = '$data_alamat', id_jadwal = $id_jadwal, kehadiran = 'masuk' WHERE id = $user_id";
     $update_data = mysqli_query($conn,$sql_update_data);
     if($update_data){
         $sql_update_jadwal = "UPDATE jadwal SET id_akun = '$user_id', order_tgl = '$order_tgl', jam = '$order_jam' WHERE id = $id_jadwal";
@@ -47,7 +47,7 @@ if($data_jadwal_user == NULL){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Les Privat Alifsyah</title>
+    <title>Les Privat Alifsyah Panji</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/style.css">
 </head>

@@ -55,7 +55,7 @@ if($run_sql_update_akun){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Les Privat Alifsyah</title>
+    <title>Les Privat Alifsyah Panji</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/style.css">
 </head>

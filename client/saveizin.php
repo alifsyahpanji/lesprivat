@@ -4,20 +4,20 @@ if($_SESSION['id'] == ""){
     header("Location: ../index.php");
 }
 
+# Isi pesan
 $data_alert = "";
 $user_id = $_SESSION['id'];
 
-$data_telepon = $_POST['telepon'];
-$data_ortu = $_POST['ortu'];
-$data_anak = $_POST['anak'];
-$data_alamat = $_POST['alamat'];;
+$tgl_izin = $_POST["tglizin"];
+
+$alasanizin = $_POST["alasanizin"];
 
 include("../env.php");
 
-$simpan_akun = $_POST['simpanakun'];
+$simpan_izin = $_POST['izin'];
 
-if($simpan_akun){
-$sql_update_data = "UPDATE akun SET telepon = '$data_telepon', nama_ortu = '$data_ortu', nama_anak = '$data_anak', alamat = '$data_alamat' WHERE id = $user_id";
+if($simpan_izin){
+$sql_update_data = "UPDATE akun SET kehadiran = 'libur', tgl_libur = '$tgl_izin', alasan_izin = '$alasanizin' WHERE id = $user_id";
 $update_data = mysqli_query($conn,$sql_update_data);
 if($update_data){
     $data_alert = "berhasilSimpan";
@@ -53,11 +53,11 @@ if($update_data){
                         switch($data_alert){
                             case "berhasilSimpan":
                             ?> <div class="alert alert-success" role="alert"> <?php
-                                echo "Data anda yang terbaru berhasil disimpan, silahkan cek hasil perubahan ini di halaman beranda"; ?> </div> <?php
+                                echo "Izin libur berhasil di terima, selamat beristirahat, sampai jumpa lagi ya"; ?> </div> <?php
                                 break;
                             case "gagalSimpan":
                                 ?> <div class="alert alert-danger" role="alert"> <?php
-                                echo "Gagal menyimpan data akun, kemungkinan ada kesalahan. harap hubungi kami";
+                                echo "Izin libur gagal, kemungkinan ada kesalahan. harap hubungi kami";
                                 ?> </div> <?php
                                 break; 
                         }

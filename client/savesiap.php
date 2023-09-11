@@ -4,26 +4,32 @@ if($_SESSION['id'] == ""){
     header("Location: ../index.php");
 }
 
+# Isi pesan
 $data_alert = "";
 $user_id = $_SESSION['id'];
 
-$data_telepon = $_POST['telepon'];
-$data_ortu = $_POST['ortu'];
-$data_anak = $_POST['anak'];
-$data_alamat = $_POST['alamat'];;
 
 include("../env.php");
 
-$simpan_akun = $_POST['simpanakun'];
+# Mendapatkan data akun
+$check_id_query = "SELECT * FROM akun WHERE id = '$user_id' ";
+$run_query_id = mysqli_query($conn,$check_id_query);
+$row_id = mysqli_fetch_assoc($run_query_id);
 
-if($simpan_akun){
-$sql_update_data = "UPDATE akun SET telepon = '$data_telepon', nama_ortu = '$data_ortu', nama_anak = '$data_anak', alamat = '$data_alamat' WHERE id = $user_id";
+$data_status = $row_id["kehadiran"];
+
+if($data_status == "libur"){
+$sql_update_data = "UPDATE akun SET kehadiran = 'masuk', tgl_libur = NULL, alasan_izin = NULL WHERE id = $user_id";
 $update_data = mysqli_query($conn,$sql_update_data);
 if($update_data){
     $data_alert = "berhasilSimpan";
 } else {
     $data_alert = "gagalSimpan";
 }
+}elseif($data_status == "masuk"){
+    $data_alert = "sudahSiap";
+}else{
+    $data_alert = "belumAda";
 }
 
 ?>
@@ -53,13 +59,23 @@ if($update_data){
                         switch($data_alert){
                             case "berhasilSimpan":
                             ?> <div class="alert alert-success" role="alert"> <?php
-                                echo "Data anda yang terbaru berhasil disimpan, silahkan cek hasil perubahan ini di halaman beranda"; ?> </div> <?php
+                                echo "Konfirmasi berhasil,Sepertinya anda sudah siap untuk les kembali. tunggu kedatangan kami ya"; ?> </div> <?php
                                 break;
                             case "gagalSimpan":
                                 ?> <div class="alert alert-danger" role="alert"> <?php
-                                echo "Gagal menyimpan data akun, kemungkinan ada kesalahan. harap hubungi kami";
+                                echo "Konfirmasi gagal, kemungkinan ada kesalahan sistem. harap hubungi kami";
                                 ?> </div> <?php
                                 break; 
+                            case "sudahSiap":
+                                ?> <div class="alert alert-primary" role="alert"> <?php
+                                echo "Anda sebelumnya sudah siap untuk les, anda tidak perlu untuk konfirmasi lagi.";
+                                 ?> </div> <?php
+                                break;
+                            case "belumAda":
+                                ?> <div class="alert alert-warning" role="alert"> <?php
+                                echo "Anda belum memiliki jadwal les, mohon untuk memilih jadwal les dulu di halaman beranda";
+                                ?> </div> <?php
+                                break;
                         }
                         ?>
                     

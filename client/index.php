@@ -4,6 +4,11 @@ if($_SESSION['id'] == ""){
     header("Location: ../index.php");
 }
 
+# Mengatur tanggal
+
+date_default_timezone_set("Asia/Jakarta");
+$tglini = date("Y-m-d");
+
 include("../env.php");
 
 $user_id = $_SESSION['id'];
@@ -14,11 +19,16 @@ $check_id_query = "SELECT * FROM akun WHERE id = '$user_id' ";
 $run_query_id = mysqli_query($conn,$check_id_query);
 $row_id = mysqli_fetch_assoc($run_query_id);
 
+# Menyimpan data dari mysql ke variabel
+
    $data_telepon = $row_id["telepon"];
    $data_jadwal = $row_id["id_jadwal"];
    $data_ortu = $row_id["nama_ortu"];
    $data_anak = $row_id["nama_anak"];
    $data_alamat = $row_id["alamat"];
+   $data_status = $row_id["kehadiran"];
+   $data_tgl_libur = $row_id["tgl_libur"];
+   
 
 # Mendapatkan data jadwal
 
@@ -41,7 +51,6 @@ $alert_perkembangan = "";
 if($count_perkembangan == 0){
     $alert_perkembangan = "Mulai pertemuan les privat untuk melihat data perkembangan anak anda";
 }
-
 
 
 ?>
@@ -149,6 +158,63 @@ if($alert_perkembangan){
 
 
                 </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <h5 class="card-header">Status Kehadiran</h5>
+            <div class="card-body">
+                <p class="card-text">Jika sebelumnya sedang libur, dan ingin les kembali. mohon beritahu kami jika anda
+                    sudah siap untuk les.</p>
+
+                <div class="mt-2">
+                    <span class="fw-bolder">Status anda:</span>
+
+                    <?php 
+                    switch($data_status){
+                        case "masuk":
+                            ?> <span class="fw-bolder font-green ms-2">Siap Les</span>  <?php
+                            break;
+                        case "libur":
+                            ?> <span class="fw-bolder font-red ms-2">Sedang Libur</span>  
+                            <div class="mt-2"> 
+                            <span class="fw-bolder">Dari Tanggal:</span>
+                            <span class="fw-bolder ms-1"><?php echo $data_tgl_libur; ?></span>
+                            </div>
+                            <?php
+                            break;
+                        default:
+                            ?> <span class="fw-bolder font-blue ms-2">Belum Ada</span>  <?php
+                    }
+?>
+
+                </div>
+
+                <a href="savesiap.php" class="btn btn-primary mt-3">Les Lagi</a>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <h5 class="card-header">Izin Libur</h5>
+            <div class="card-body">
+                <p class="card-text">Jika ingin libur, mohon beritahu kami dengan mengisi data di bawah ini.</p>
+
+                <form action="saveizin.php" method="post">
+                    <div class="mt-3">
+                        <label for="tglizin" class="form-label fw-bolder">Tanggal Libur:</label>
+                        <input type="date" id="tglizin" name="tglizin" required>
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <label for="alasanizin" class="form-label">Alasan:</label>
+                        <textarea class="form-control" id="alasanizin" name="alasanizin" rows="3"
+                            placeholder="Kenapa anda libur ?" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" name="izin" value="izin">Izin</button>
+                </form>
+
+
             </div>
         </div>
 
