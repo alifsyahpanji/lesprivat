@@ -2,6 +2,7 @@
 session_start();
 if ($_SESSION['id'] == "") {
     header("Location: ../index.php");
+    die();
 }
 
 $jumlah_pembayaran = $_POST['jumlahuang'];

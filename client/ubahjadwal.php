@@ -2,6 +2,7 @@
 session_start();
 if($_SESSION['id'] == ""){
     header("Location: ../index.php");
+    die();
 }
 
 $user_id = $_SESSION['id'];

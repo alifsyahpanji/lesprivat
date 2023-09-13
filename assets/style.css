@@ -35,6 +35,36 @@ body {
     color: blue;
 }
 
+.navbar {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.img-nav-icon {
+    width: 30px;
+}
+
+.menu-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+}
+
+.img-menu-panel {
+    width: 70px;
+}
+
 @media (orientation: portrait) {
     .title {
         font-size: 27px;

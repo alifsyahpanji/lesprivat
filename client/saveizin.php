@@ -1,7 +1,8 @@
 <?php
 session_start();
-if($_SESSION['id'] == ""){
+if ($_SESSION['id'] == "") {
     header("Location: ../index.php");
+    die();
 }
 
 # Isi pesan
@@ -16,14 +17,14 @@ include("../env.php");
 
 $simpan_izin = $_POST['izin'];
 
-if($simpan_izin){
-$sql_update_data = "UPDATE akun SET kehadiran = 'libur', tgl_libur = '$tgl_izin', alasan_izin = '$alasanizin' WHERE id = $user_id";
-$update_data = mysqli_query($conn,$sql_update_data);
-if($update_data){
-    $data_alert = "berhasilSimpan";
-} else {
-    $data_alert = "gagalSimpan";
-}
+if ($simpan_izin) {
+    $sql_update_data = "UPDATE akun SET kehadiran = 'libur', tgl_libur = '$tgl_izin', alasan_izin = '$alasanizin' WHERE id = $user_id";
+    $update_data = mysqli_query($conn, $sql_update_data);
+    if ($update_data) {
+        $data_alert = "berhasilSimpan";
+    } else {
+        $data_alert = "gagalSimpan";
+    }
 }
 
 ?>
@@ -48,21 +49,29 @@ if($update_data){
             <div class="card-body">
 
                 <div class="card-text">
-                    
-                        <?php  
-                        switch($data_alert){
-                            case "berhasilSimpan":
-                            ?> <div class="alert alert-success" role="alert"> <?php
-                                echo "Izin libur berhasil di terima, selamat beristirahat, sampai jumpa lagi ya"; ?> </div> <?php
-                                break;
-                            case "gagalSimpan":
-                                ?> <div class="alert alert-danger" role="alert"> <?php
+
+                    <?php
+                    switch ($data_alert) {
+                        case "berhasilSimpan":
+                            ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php
+                                echo "Izin libur berhasil di terima, selamat beristirahat, sampai jumpa lagi ya"; ?>
+                            </div>
+                            <?php
+                            break;
+                        case "gagalSimpan":
+                            ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php
                                 echo "Izin libur gagal, kemungkinan ada kesalahan. harap hubungi kami";
-                                ?> </div> <?php
-                                break; 
-                        }
-                        ?>
-                    
+                                ?>
+                            </div>
+                            <?php
+                            break;
+                    }
+                    ?>
+
                 </div>
 
                 <div class="mt-3">
