@@ -61,6 +61,12 @@ body {
     border-radius: 20px;
 }
 
+.menu-admin-edit {
+    border-radius: 20px;
+    width: 70px;
+    height: 70px;
+}
+
 .img-menu-panel {
     width: 70px;
 }

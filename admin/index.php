@@ -7,7 +7,6 @@ if ($_SESSION['pass'] == "") {
 
 include("../env.php");
 
-$admin_pass = $_SESSION['pass'];
 
 
 
@@ -52,7 +51,7 @@ $admin_pass = $_SESSION['pass'];
                     <p class="card-text">Silahkan gunakan management menu pada panel ini.</p>
                     <div class="d-flex flex-wrap">
 
-                        <a href="" class="ms-3 mt-3 mb-3">
+                        <a href="jadaktif.php" class="ms-3 mt-3 mb-3">
                             <div
                                 class="menu-container text-bg-primary d-flex align-items-center justify-content-center">
                                 <div>
