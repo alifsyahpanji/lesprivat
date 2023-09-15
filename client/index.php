@@ -212,10 +212,12 @@ include("../utility/rupiah.php");
             <div class="card-body">
                 <p class="card-text">Jika ingin libur, mohon beritahu kami dengan mengisi data di bawah ini.</p>
 
+                <div class="mt-2">Klik gambar kalender untuk memilih tanggal</div>
+
                 <form action="saveizin.php" method="post">
                     <div class="mt-3">
                         <label for="tglizin" class="form-label fw-bolder">Tanggal Libur:</label>
-                        <input type="date" id="tglizin" name="tglizin" required>
+                        <input type="date" class="form-control" id="tglizin" name="tglizin" required>
                     </div>
 
                     <div class="mt-3 mb-3">
