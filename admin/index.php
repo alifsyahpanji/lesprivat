@@ -87,6 +87,18 @@ include("../env.php");
 
                         <a href="" class="ms-3 mt-3 mb-3">
                             <div
+                                class="menu-container text-bg-secondary d-flex align-items-center justify-content-center">
+                                <div>
+                                    <img class="img-menu-panel" src="../assets/image/pembayaran-menunggu.png"
+                                        alt="pembayaran menunggu">
+                                </div>
+
+
+                            </div>
+                        </a>
+
+                        <a href="" class="ms-3 mt-3 mb-3">
+                            <div
                                 class="menu-container text-bg-warning d-flex align-items-center justify-content-center">
                                 <div>
                                     <img class="img-menu-panel" src="../assets/image/member.png" alt="member">

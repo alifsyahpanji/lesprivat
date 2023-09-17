@@ -7,7 +7,7 @@ if ($_SESSION['pass'] == "") {
 
 include("../env.php");
 
-$sql_jadwal_aktif = "SELECT akun.id, akun.telepon, akun.nama_ortu, akun.nama_anak, akun.alamat, jadwal.hari, jadwal.order_tgl, jadwal.jam FROM akun INNER JOIN jadwal ON akun.id = jadwal.id_akun WHERE akun.kehadiran = 'masuk' ORDER BY jadwal.order_tgl DESC";
+$sql_jadwal_aktif = "SELECT akun.id, akun.telepon, akun.nama_ortu, akun.nama_anak, akun.alamat, jadwal.hari, jadwal.order_tgl, jadwal.jam, jadwal.id AS jadwal_id FROM akun INNER JOIN jadwal ON akun.id = jadwal.id_akun WHERE akun.kehadiran = 'masuk' ORDER BY jadwal.order_tgl DESC";
 $run_jadwal_aktif = mysqli_query($conn, $sql_jadwal_aktif);
 $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
 
@@ -105,7 +105,7 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
                                     </div>
                                 </a>
 
-                                <a href="pembayaran.php?id=<?php echo $row_jadwal['id']; ?>" class="ms-3 mt-3 mb-3">
+                                <a href="inputpembayaran.php?id=<?php echo $row_jadwal['id']; ?>" class="ms-3 mt-3 mb-3">
                                     <div
                                         class="menu-admin-edit text-bg-success d-flex align-items-center justify-content-center">
                                         <div>
@@ -116,11 +116,12 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
                                     </div>
                                 </a>
 
-                                <a href="editjadaktif.php?id=<?php echo $row_jadwal['id']; ?>" class="ms-3 mt-3 mb-3">
+                                <a class="ms-3 mt-3 mb-3"
+                                    onclick="hapus('Apakah anda ingin mengkosongkan jadwal murid anda yang bernama <?php echo $row_jadwal['nama_anak']; ?> ?', 'hapusjadaktif.php?id=<?php echo $row_jadwal['id']; ?>&jadwal=<?php echo $row_jadwal['jadwal_id']; ?>');">
                                     <div
-                                        class="menu-admin-edit text-bg-warning d-flex align-items-center justify-content-center">
+                                        class="menu-admin-edit text-bg-danger d-flex align-items-center justify-content-center">
                                         <div>
-                                            <img src="../assets/image/edit.png" alt="Edit">
+                                            <img src="../assets/image/hapus.png" alt="Edit">
                                         </div>
 
 
@@ -148,6 +149,15 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
 
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function hapus(txt, lokasi) {
+            const datakonfirmasi = confirm(txt);
+
+            if (datakonfirmasi == true) {
+                location = lokasi;
+            }
+        }
+    </script>
 
 </body>
 
