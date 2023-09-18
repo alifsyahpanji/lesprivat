@@ -71,8 +71,56 @@ body {
     width: 70px;
 }
 
+.header-title {
+    width: 80%;
+    height: 90%;
+    background: rgba(255, 255, 255, 0.33);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+.customvh {
+    height: 70vh;
+}
+
+.text-title {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.text-title2 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.cta-header {
+    padding: 5px;
+    border: none;
+    width: 140px;
+    border-radius: 20px;
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+    background: rgb(255, 134, 4);
+}
+
 @media (orientation: portrait) {
     .title {
         font-size: 27px;
+    }
+
+    .text-title {
+        font-size: 25px;
+    }
+
+    .text-title2 {
+        font-size: 20px;
+    }
+
+    .cta-header {
+        font-size: 20px;
     }
 }
