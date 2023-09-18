@@ -68,7 +68,7 @@ if ($run_kosong_data) {
 
             <div class="card">
                 <h5 class="card-header fw-bolder">
-                    Perkembangan Murid
+                    Kosongkan Jadwal Aktif
                 </h5>
                 <div class="card-body">
 

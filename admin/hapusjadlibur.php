@@ -5,22 +5,32 @@ if ($_SESSION['pass'] == "") {
     die();
 }
 
-$user_id = $_GET["id"];
-$id_pembayaran = $_GET["pembayaran"];
-
+$id_akun = $_GET["id"];
+$jadwal_id = $_GET["jadwal"];
 
 include("../env.php");
 
 $alert = "";
 
-$sql_delete_pembayaran = "DELETE FROM pembayaran WHERE id = $id_pembayaran";
-$run_delete_data = mysqli_query($conn, $sql_delete_pembayaran);
+$sql_kosong_jadwal = "UPDATE jadwal SET id_akun = NULL, order_tgl = NULL, jam = NULL WHERE id = $jadwal_id";
+$run_kosong_data = mysqli_query($conn, $sql_kosong_jadwal);
 
-if ($run_delete_data) {
-    $alert = "berhasil";
+if ($run_kosong_data) {
+
+    $sql_kosong_akun = "UPDATE akun SET id_jadwal = NULL, kehadiran = NULL, tgl_libur = NULL, alasan_izin = NULL WHERE id = $id_akun";
+    $run_kosong_akun = mysqli_query($conn, $sql_kosong_akun);
+
+    if ($run_kosong_akun) {
+        $alert = "berhasil";
+    } else {
+        $alert = "gagal";
+    }
+
 } else {
     $alert = "gagal";
 }
+
+
 
 ?>
 
@@ -58,7 +68,7 @@ if ($run_delete_data) {
 
             <div class="card">
                 <h5 class="card-header fw-bolder">
-                    Hapus Input Pembayaran
+                    Kosongkan Jadwal Libur
                 </h5>
                 <div class="card-body">
 
@@ -66,20 +76,19 @@ if ($run_delete_data) {
                     if ($alert == "berhasil") {
                         ?>
                         <div class="alert alert-success" role="alert">
-                            Pembayaran telah berhasil dihapus, silahkan cek pada input pembayaran.
+                            Jadwal telah berhasil di kosongkan, silahkan cek pada halaman jadwal libur.
                         </div>
                         <?php
                     } elseif ($alert == "gagal") {
                         ?>
                         <div class="alert alert-danger" role="alert">
-                            Pembayaran gagal dihapus, sepertinya ada kesalahan sistem.
+                            Jadwal gagal di kosongkan, sepertinya ada kesalahan sistem.
                         </div>
                         <?php
                     }
                     ?>
 
-                    <div class="mt-2 mb-2"><a href="inputpembayaran.php?id=<?php echo $user_id; ?>"
-                            class="btn btn-primary">Kembali</a></div>
+                    <div class="mt-2 mb-2"><a href="jadlibur.php" class="btn btn-primary">Kembali</a></div>
                 </div>
             </div>
 

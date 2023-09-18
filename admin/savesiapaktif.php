@@ -5,18 +5,17 @@ if ($_SESSION['pass'] == "") {
     die();
 }
 
-$user_id = $_GET["id"];
-$id_pembayaran = $_GET["pembayaran"];
 
+$jadwal_id = $_GET["jadwal"];
 
 include("../env.php");
 
 $alert = "";
 
-$sql_delete_pembayaran = "DELETE FROM pembayaran WHERE id = $id_pembayaran";
-$run_delete_data = mysqli_query($conn, $sql_delete_pembayaran);
+$sql_update_aktif = "UPDATE akun SET kehadiran = 'masuk', tgl_libur = NULL, alasan_izin = NULL WHERE id_jadwal = $jadwal_id";
+$run_update_data = mysqli_query($conn, $sql_update_aktif);
 
-if ($run_delete_data) {
+if ($run_update_data) {
     $alert = "berhasil";
 } else {
     $alert = "gagal";
@@ -58,7 +57,7 @@ if ($run_delete_data) {
 
             <div class="card">
                 <h5 class="card-header fw-bolder">
-                    Hapus Input Pembayaran
+                    Siap Les Lagi
                 </h5>
                 <div class="card-body">
 
@@ -66,20 +65,19 @@ if ($run_delete_data) {
                     if ($alert == "berhasil") {
                         ?>
                         <div class="alert alert-success" role="alert">
-                            Pembayaran telah berhasil dihapus, silahkan cek pada input pembayaran.
+                            Status kehadiran berhasil di aktifkan, murid anda sudah siap untuk les lagi.
                         </div>
                         <?php
                     } elseif ($alert == "gagal") {
                         ?>
                         <div class="alert alert-danger" role="alert">
-                            Pembayaran gagal dihapus, sepertinya ada kesalahan sistem.
+                            Gagal mengubah status kehadiran, sepertinya ada kesalahan sistem.
                         </div>
                         <?php
                     }
                     ?>
 
-                    <div class="mt-2 mb-2"><a href="inputpembayaran.php?id=<?php echo $user_id; ?>"
-                            class="btn btn-primary">Kembali</a></div>
+                    <div class="mt-2 mb-2"><a href="jadaktif.php" class="btn btn-primary">Kembali</a></div>
                 </div>
             </div>
 

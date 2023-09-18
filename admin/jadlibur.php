@@ -7,7 +7,7 @@ if ($_SESSION['pass'] == "") {
 
 include("../env.php");
 
-$sql_jadwal_aktif = "SELECT akun.id, akun.telepon, akun.nama_ortu, akun.nama_anak, akun.alamat, jadwal.hari, jadwal.order_tgl, jadwal.jam, jadwal.id AS jadwal_id FROM akun INNER JOIN jadwal ON akun.id = jadwal.id_akun WHERE akun.kehadiran = 'masuk' ORDER BY jadwal.order_tgl DESC";
+$sql_jadwal_aktif = "SELECT akun.id, akun.telepon, akun.nama_ortu, akun.nama_anak, akun.alamat, jadwal.hari, tgl_libur, alasan_izin, jadwal.id AS jadwal_id FROM akun INNER JOIN jadwal ON akun.id = jadwal.id_akun WHERE akun.kehadiran = 'libur' ORDER BY jadwal.order_tgl DESC";
 $run_jadwal_aktif = mysqli_query($conn, $sql_jadwal_aktif);
 $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
 
@@ -52,9 +52,9 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
                 </h5>
                 <div class="card-body">
 
-                    <p class="card-text">Ini adalah jadwal les yang sedang aktif. ada <span class="fw-bolder">
+                    <p class="card-text">Ini adalah jadwal les yang sedang libur. Ada <span class="fw-bolder">
                             <?php echo $count_jadwal; ?> murid
-                        </span> yang les.</p>
+                        </span> yang libur.</p>
 
 
                 </div>
@@ -86,40 +86,34 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
                             <div class="mt-2 mb-2 fw-bolder">Nama Ortu:
                                 <?php echo $row_jadwal['nama_ortu']; ?>
                             </div>
-                            <div class="mt-2 mb-2 fw-bolder">Tanggal Order:
-                                <?php echo $row_jadwal['order_tgl']; ?>
+                            <div class="mt-2 mb-2 fw-bolder">Tanggal Libur:
+                                <?php echo $row_jadwal['tgl_libur']; ?>
                             </div>
-                            <div class="mt-2 mb-2 fw-bolder">Jam Order:
-                                <?php echo $row_jadwal['jam']; ?>
+                            <div class="mt-2 mb-2 fw-bolder">Alasan Izin:
+                                <?php echo $row_jadwal['alasan_izin']; ?>
                             </div>
 
 
                             <div class="d-flex flex-wrap">
 
-                                <a href="perkembangan.php?id=<?php echo $row_jadwal['id']; ?>" class="mt-3 mb-3">
+
+
+                                <a class="ms-3 mt-3 mb-3"
+                                    onclick="aksi('Apakah murid anda aktif lagi yang bernama <?php echo $row_jadwal['nama_anak']; ?> ?', 'savesiapaktif.php?jadwal=<?php echo $row_jadwal['jadwal_id']; ?>');">
                                     <div
                                         class="menu-admin-edit text-bg-primary d-flex align-items-center justify-content-center">
                                         <div>
-                                            <img src="../assets/image/perkembangan.png" alt="Perkembangan">
+                                            <img src="../assets/image/send.png" alt="Aktif">
                                         </div>
 
 
                                     </div>
                                 </a>
 
-                                <a href="inputpembayaran.php?id=<?php echo $row_jadwal['id']; ?>" class="ms-3 mt-3 mb-3">
-                                    <div
-                                        class="menu-admin-edit text-bg-success d-flex align-items-center justify-content-center">
-                                        <div>
-                                            <img src="../assets/image/pembayaran-google.png" alt="Pembayaran">
-                                        </div>
 
-
-                                    </div>
-                                </a>
 
                                 <a class="ms-3 mt-3 mb-3"
-                                    onclick="hapus('Apakah anda ingin mengkosongkan jadwal murid anda yang bernama <?php echo $row_jadwal['nama_anak']; ?> ?', 'hapusjadaktif.php?id=<?php echo $row_jadwal['id']; ?>&jadwal=<?php echo $row_jadwal['jadwal_id']; ?>');">
+                                    onclick="aksi('Apakah anda ingin mengkosongkan jadwal murid anda yang bernama <?php echo $row_jadwal['nama_anak']; ?> ?', 'hapusjadlibur.php?id=<?php echo $row_jadwal['id']; ?>&jadwal=<?php echo $row_jadwal['jadwal_id']; ?>');">
                                     <div
                                         class="menu-admin-edit text-bg-danger d-flex align-items-center justify-content-center">
                                         <div>
@@ -152,7 +146,7 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script>
-        function hapus(txt, lokasi) {
+        function aksi(txt, lokasi) {
             const datakonfirmasi = confirm(txt);
 
             if (datakonfirmasi == true) {

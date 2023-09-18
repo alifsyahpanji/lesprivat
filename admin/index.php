@@ -63,7 +63,7 @@ include("../env.php");
                             </div>
                         </a>
 
-                        <a href="" class="ms-3 mt-3 mb-3">
+                        <a href="jadlibur.php" class="ms-3 mt-3 mb-3">
                             <div class="menu-container text-bg-danger d-flex align-items-center justify-content-center">
                                 <div>
                                     <img class="img-menu-panel" src="../assets/image/jadwal-libur.png"
