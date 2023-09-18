@@ -1,7 +1,7 @@
 <?php
 session_start();
 if($_SESSION['id'] == ""){
-    header("Location: ../index.php");
+    header("Location: ../login.php");
     die();
 }
 
@@ -95,7 +95,7 @@ if($count_jadwal > 0){
             <div class="card-body">
                 <div class="card-text">
                     <form action="savejadubah.php" method="post">
-                        <label for="jadwal" class="form-label">Jadwal baru yang tersedia:</label>
+                        <label for="jadwalBaru" class="form-label">Jadwal baru yang tersedia:</label>
                         <select class="form-select" id="jadwalBaru" name="jadwalBaru" required>
                         <?php 
                             if($count_jadwal){

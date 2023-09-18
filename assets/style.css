@@ -73,7 +73,7 @@ body {
 
 .header-title {
     width: 80%;
-    height: 90%;
+    height: 75%;
     background: rgba(255, 255, 255, 0.33);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -107,6 +107,48 @@ body {
     background: rgb(255, 134, 4);
 }
 
+.container-layanan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.container-tentang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+}
+
+.size-tentang-kami {
+    width: 80%;
+}
+
+.container-profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 45px;
+
+}
+
+.profil {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.size-promo {
+    height: 510px;
+}
+
+.size-kontak-kami {
+    height: 510px;
+}
+
+
+
 @media (orientation: portrait) {
     .title {
         font-size: 27px;
@@ -122,5 +164,34 @@ body {
 
     .cta-header {
         font-size: 20px;
+    }
+
+    .container-layanan {
+        flex-direction: column;
+    }
+
+    .margin-layanan-top {
+        margin-top: 35px;
+    }
+
+    .container-tentang {
+        margin-top: 35px;
+    }
+
+    .size-tentang-kami {
+        width: 290px;
+    }
+
+    .container-profil {
+        margin-top: 35px;
+        flex-direction: column;
+    }
+
+    .size-promo {
+        height: 480px;
+    }
+
+    .size-kontak-kami {
+        height: 280px;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['id'] == "") {
-    header("Location: ../index.php");
+    header("Location: ../login.php");
     die();
 }
 
