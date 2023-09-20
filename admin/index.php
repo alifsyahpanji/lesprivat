@@ -74,7 +74,7 @@ include("../env.php");
                             </div>
                         </a>
 
-                        <a href="" class="ms-3 mt-3 mb-3">
+                        <a href="riwayatpembayaran.php" class="ms-3 mt-3 mb-3">
                             <div
                                 class="menu-container text-bg-success d-flex align-items-center justify-content-center">
                                 <div>
@@ -85,7 +85,7 @@ include("../env.php");
                             </div>
                         </a>
 
-                        <a href="" class="ms-3 mt-3 mb-3">
+                        <a href="pembayaranmenunggu.php" class="ms-3 mt-3 mb-3">
                             <div
                                 class="menu-container text-bg-secondary d-flex align-items-center justify-content-center">
                                 <div>
@@ -97,7 +97,7 @@ include("../env.php");
                             </div>
                         </a>
 
-                        <a href="" class="ms-3 mt-3 mb-3">
+                        <a href="member.php" class="ms-3 mt-3 mb-3">
                             <div
                                 class="menu-container text-bg-warning d-flex align-items-center justify-content-center">
                                 <div>

@@ -48,7 +48,7 @@ $count_jadwal = mysqli_num_rows($run_jadwal_aktif);
 
             <div class="card">
                 <h5 class="card-header fw-bolder">
-                    Jadwal Aktif
+                    Jadwal Libur
                 </h5>
                 <div class="card-body">
 

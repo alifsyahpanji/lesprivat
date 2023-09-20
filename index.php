@@ -7,6 +7,7 @@
     <title>Les Privat Membaca dan Menulis Anak Semarang</title>
     <meta name="description"
         content="Kami adalah tempat di mana perjalanan membaca dan menulis anak Anda dimulai dengan cinta dan teknologi modern.">
+    <link rel="icon" href="assets/image/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>

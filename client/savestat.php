@@ -12,7 +12,7 @@ $data_telepon = $_POST['telepon'];
 $data_ortu = $_POST['ortu'];
 $data_anak = $_POST['anak'];
 $data_alamat = $_POST['alamat'];
-;
+
 
 include("../env.php");
 
