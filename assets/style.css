@@ -75,7 +75,7 @@ body {
 
 .header-title {
     width: 970px;
-    height: 75%;
+    height: 450px;
     background: rgba(255, 255, 255, 0.33);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -85,7 +85,7 @@ body {
 }
 
 .customvh {
-    height: 70vh;
+    height: 600px;
 }
 
 .text-title {
@@ -152,12 +152,17 @@ body {
 
 
 @media (orientation: portrait) {
+    .customvh {
+        height: 500px;
+    }
+
     .title {
         font-size: 27px;
     }
 
     .header-title {
         width: 290px;
+        height: 400px;
     }
 
     .text-title {
