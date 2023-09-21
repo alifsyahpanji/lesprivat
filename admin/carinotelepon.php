@@ -5,22 +5,13 @@ if ($_SESSION['pass'] == "") {
     die();
 }
 
+$telepon = $_POST["carinomor"];
+
 include("../env.php");
 
-$batas = 20;
-$halaman = isset($_GET['halaman']) ? (int) $_GET['halaman'] : 1;
-$halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
-
-$previous = $halaman - 1;
-$next = $halaman + 1;
-
-
-$sql_get_data = "SELECT id, telepon, nama_ortu, nama_anak, alamat, kehadiran FROM akun";
+$sql_get_data = "SELECT id, telepon, nama_ortu, nama_anak, alamat, kehadiran FROM akun WHERE telepon = '$telepon' ";
 $data = mysqli_query($conn, $sql_get_data);
 $jumlah_data = mysqli_num_rows($data);
-$total_halaman = ceil($jumlah_data / $batas);
-
-$data_member = mysqli_query($conn, "SELECT id, telepon, nama_ortu, nama_anak, alamat, kehadiran FROM akun LIMIT $halaman_awal, $batas");
 
 
 ?>
@@ -56,71 +47,41 @@ $data_member = mysqli_query($conn, "SELECT id, telepon, nama_ortu, nama_anak, al
         </nav>
 
         <div class="container-fluid mt-5 mb-5">
-
-
-
-            <div class="card mb-5">
+            <div class="card">
                 <h5 class="card-header fw-bolder">
-                    Member
+                    Pencarian Member
                 </h5>
                 <div class="card-body">
-                    <p class="card-text">Ini adalah menu member yang sudah gabung di aplikasi les privat.</p>
-
-                    <form action="carinotelepon.php" method="post">
-                        <div class="mt-3 mb-3">
-                            <label for="carinomor" class="form-label">Nomor Telepon:</label>
-                            <input type="number" class="form-control" id="carinomor" name="carinomor" required>
+                    <p class="card-text">
+                        <?php if ($jumlah_data > 0) {
+                            ?>
+                        <div class="alert alert-success" role="alert">
+                            Data telepon
+                            <?php echo $telepon; ?> berhasil ditemukan, silahkan gunakan menu pada aplikasi ini.
                         </div>
+                        <?php
+                        } else {
+                            ?>
+                        <div class="alert alert-danger" role="alert">
+                            Data telepon
+                            <?php echo $telepon; ?> tidak ditemukan, mungkin salah nomor atau tidak terdaftar pada aplikasi
+                            ini.
+                        </div>
+                        <?php
+                        } ?>
+                    </p>
 
-                        <button type="submit" class="btn btn-primary mt-2 mb-3">Cari</button>
+                    <div class="mt-2"><a href="member.php" class="btn btn-primary">Kembali</a></div>
 
-
-                    </form>
 
                 </div>
             </div>
 
 
-            <nav aria-label="Page navigation example" class="mt-1 mb-5">
-                <ul class="pagination justify-content-center">
-
-                    <li class="page-item <?php if ($halaman == 1) {
-                        echo "disabled";
-                    } ?>">
-                        <a class="page-link" <?php if ($halaman > 1) {
-                            echo "href=?halaman=" . $previous;
-                        } ?>>Previous</a>
-                    </li>
-
-                    <?php
-                    for ($x = 1; $x <= $total_halaman; $x++) {
-                        ?>
-                        <li class="page-item"><a class="page-link <?php if ($x == $halaman) {
-                            echo "active";
-                        } ?>" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a>
-                        </li>
-                        <?php
-                    }
-
-                    ?>
-
-                    <li class="page-item <?php if ($halaman == $total_halaman) {
-                        echo "disabled";
-                    } ?>">
-                        <a class="page-link" <?php if ($halaman < $total_halaman) {
-                            echo "href=?halaman=" . $next;
-                        } ?>>Next</a>
-                    </li>
-
-
-                </ul>
-            </nav>
-
-
 
             <?php
             if ($jumlah_data > 0) {
-                while ($row_akun = mysqli_fetch_assoc($data_member)) {
+                while ($row_akun = mysqli_fetch_assoc($data)) {
                     ?>
                     <div class="card mt-3 mb-4">
                         <h5 class="card-header fw-bolder">
@@ -167,23 +128,19 @@ $data_member = mysqli_query($conn, "SELECT id, telepon, nama_ortu, nama_anak, al
 
 
 
-
-
-
         </div>
+
+
+
+
+
+
+
+
     </div>
 
 
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function hapus(txt, lokasi) {
-            const datakonfirmasi = confirm(txt);
-
-            if (datakonfirmasi == true) {
-                location = lokasi;
-            }
-        }
-    </script>
 
 </body>
 
