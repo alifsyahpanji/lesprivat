@@ -15,7 +15,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -78,7 +78,7 @@
 
 
         <div class="card mx-4 margin-layanan-top" style="width: 290px;">
-            <img src="assets/image/love.jpg" class="card-img-top" alt="Laptop">
+            <img src="assets/image/love.jpg" class="card-img-top" alt="Nyaman">
             <div class="card-body">
                 <h5 class="card-title">Nyaman</h5>
                 <p class="card-text">Dibimbing dengan penuh kelembutan dan kesabaran.</p>
@@ -134,7 +134,7 @@
         </div>
 
         <div class="card mx-4 size-promo margin-layanan-top" style="width: 290px;">
-            <img src="assets/image/promoles.jpg" class="card-img-top" alt="Laptop">
+            <img src="assets/image/promo.jpg" class="card-img-top" alt="Promo">
             <div class="card-body">
                 <h5 class="card-title">Biaya Les</h5>
                 <p class="card-text">Kami memberi layanan yang terbaik dengan harga terjangkau.</p>
